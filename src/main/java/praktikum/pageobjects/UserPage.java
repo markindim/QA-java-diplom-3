@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import praktikum.constants.NamingButtonConstructor;
+import praktikum.constants.NameButtonConstructor;
 import praktikum.model.User;
 
 import java.time.Duration;
@@ -51,7 +51,7 @@ public class UserPage {
         webDriver.findElement(buttonLogout).click();
     }
 
-    public void checkButton(NamingButtonConstructor buttonName) {
+    public void checkButton(NameButtonConstructor buttonName) {
         switch (buttonName) {
             case CONSTRUCTOR:
                 clickButtonConstructor();

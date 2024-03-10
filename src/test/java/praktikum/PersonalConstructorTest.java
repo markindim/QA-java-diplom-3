@@ -4,17 +4,17 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import praktikum.constants.NamingButtonConstructor;
+import praktikum.constants.NameButtonConstructor;
 
 import static org.junit.Assert.assertEquals;
-import static praktikum.constants.NamingButtonConstructor.*;
+import static praktikum.constants.NameButtonConstructor.*;
 
 @RunWith(Parameterized.class)
 public class PersonalConstructorTest extends BaseTest {
-    private final NamingButtonConstructor namingButtonConstructor;
+    private final NameButtonConstructor buttonName;
 
-    public PersonalConstructorTest(NamingButtonConstructor namingButtonConstructor) {
-        this.namingButtonConstructor = namingButtonConstructor;
+    public PersonalConstructorTest(NameButtonConstructor buttonName) {
+        this.buttonName = buttonName;
     }
 
     @Parameterized.Parameters
@@ -30,7 +30,7 @@ public class PersonalConstructorTest extends BaseTest {
     public void toConstructorFromPersonalAccount() {
         userPage.goToPersonalAccount(homePage, loginPage, user);
         userPage.waitLoadingPage();
-        userPage.clickButtonConstructor();
+        userPage.checkButton(buttonName);
 
         assertEquals("https://stellarburgers.nomoreparties.site/", webDriver.getCurrentUrl());
     }
