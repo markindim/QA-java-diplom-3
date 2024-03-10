@@ -6,7 +6,7 @@ import io.restassured.http.ContentType;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import praktikum.constants.NamingButtonLogin;
+import praktikum.constants.NameButtonLogin;
 import praktikum.model.User;
 import praktikum.pageobjects.*;
 import praktikum.service.UserGenerator;
@@ -55,8 +55,8 @@ public class BaseTest {
             given().filter(new AllureRestAssured()).contentType(ContentType.JSON).header("Authorization", accessToken).body(user).delete(BASE_URI + ENDPOINT_FOR_DELETE_USER);
     }
 
-    public void selectButton(NamingButtonLogin namingButtonLogin) {
-        switch (namingButtonLogin) {
+    public void selectButton(NameButtonLogin nameButtonLogin) {
+        switch (nameButtonLogin) {
             case LOGIN_IN_HOME_PAGE:
                 homePage.clickButtonEnter();
                 break;

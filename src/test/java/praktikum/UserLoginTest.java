@@ -4,18 +4,18 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import praktikum.constants.NamingButtonLogin;
+import praktikum.constants.NameButtonLogin;
 
 import static org.junit.Assert.assertEquals;
-import static praktikum.constants.NamingButtonLogin.*;
+import static praktikum.constants.NameButtonLogin.*;
 
 @RunWith(Parameterized.class)
 public class UserLoginTest extends BaseTest {
-    private final NamingButtonLogin namingButtonLogin;
+    private final NameButtonLogin nameButtonLogin;
 
 
-    public UserLoginTest(NamingButtonLogin namingButtonLogin) {
-        this.namingButtonLogin = namingButtonLogin;
+    public UserLoginTest(NameButtonLogin nameButtonLogin) {
+        this.nameButtonLogin = nameButtonLogin;
     }
 
     @Parameterized.Parameters
@@ -31,7 +31,7 @@ public class UserLoginTest extends BaseTest {
     @Test
     @DisplayName("Авторизация пользователя")
     public void loginUserTest() {
-        selectButton(namingButtonLogin);
+        selectButton(nameButtonLogin);
         loginPage.waitLoadHeader();
         loginPage.setEmailField(user.getEmail());
         loginPage.setPasswordField(user.getPassword());
