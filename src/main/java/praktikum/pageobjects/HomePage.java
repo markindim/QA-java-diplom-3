@@ -3,7 +3,6 @@ package praktikum.pageobjects;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import praktikum.constants.SectionName;
 
@@ -15,9 +14,9 @@ public class HomePage {
     private final By personalAccount = By.xpath(".//p[text() = 'Личный Кабинет']");
     private final By buttonEnter = By.className("button_button__33qZ0");
     private final By logoPage = By.xpath(".//*[@class='active']");
-    public final By sectionSauce = By.xpath(".//*[text()='Соусы']//parent::div");
-    public final By sectionFilling = By.xpath(".//*[text()='Начинки']//parent::div");
-    public final By sectionBun = By.xpath(".//*[text()='Булки']//parent::div");
+    private final By sectionBun = By.xpath("//span[text()='Булки']/..");
+    private final By sectionSauce = By.xpath("//span[text()='Соусы']/..");
+    private final By sectionFilling = By.xpath("//span[text()='Начинки']/..");
 
     public HomePage(WebDriver driver) {
         this.webDriver = driver;
@@ -39,54 +38,35 @@ public class HomePage {
         webDriver.findElement(personalAccount).click();
     }
 
-    @Step("Клик по кнопке 'Соусы' на главной странице")
-    public void clickSectionSauce() {
-        waitLoadingLogoPage();
-        webDriver.findElement(sectionSauce).click();
-    }
-
-    @Step("Клик по кнопке 'Начинки' на главной странице")
-    public void clickSectionFilling() {
-        waitLoadingLogoPage();
-        webDriver.findElement(sectionFilling).click();
-    }
-
-    @Step("Клик по кнопке 'Булки' на главной странице")
-    public void clickSectionBun() {
-        clickSectionSauce();
-        clickSectionFilling();
-        webDriver.findElement(sectionBun).click();
-    }
-
-    @Step("Клик по одной из секций 'Соусы', 'Начинки', 'Булки' на главной странице")
+    @Step("Клик по одной из секций 'Соусы', 'Начинки' или 'Булки' на главной странице")
     public void clickSection(SectionName sectionName) {
         switch (sectionName) {
             case BUN:
-                clickSectionBun();
+                waitLoadingLogoPage();
+                webDriver.findElement(sectionFilling).click();
+                webDriver.findElement(sectionBun).click();
                 break;
             case SAUCE:
-                clickSectionSauce();
+                waitLoadingLogoPage();
+                webDriver.findElement(sectionSauce).click();
                 break;
             case FILLING:
-                clickSectionFilling();
+                waitLoadingLogoPage();
+                webDriver.findElement(sectionFilling).click();
                 break;
         }
     }
 
-    public WebElement getSection(SectionName sectionName) {
+    public boolean getSection(SectionName sectionName) {
         switch (sectionName) {
             case BUN:
-                return webDriver.findElement(sectionBun);
+                return webDriver.findElement(sectionBun).getAttribute("class").contains("current");
             case SAUCE:
-                return webDriver.findElement(sectionSauce);
+                return webDriver.findElement(sectionSauce).getAttribute("class").contains("current");
             case FILLING:
-                return webDriver.findElement(sectionFilling);
+                return webDriver.findElement(sectionFilling).getAttribute("class").contains("current");
             default:
-                throw new RuntimeException("Некорректное название элемента");
+                throw new RuntimeException("Элемент не найден");
         }
-    }
-
-    public String getClassName(SectionName sectionName) {
-        return getSection(sectionName).getText();
     }
 }
