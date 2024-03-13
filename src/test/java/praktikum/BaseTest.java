@@ -1,11 +1,13 @@
 package praktikum;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import praktikum.constants.NameButtonLogin;
 import praktikum.model.User;
 import praktikum.pageobjects.*;
@@ -15,7 +17,7 @@ import static io.restassured.RestAssured.given;
 import static praktikum.constants.Endpoints.*;
 
 public class BaseTest {
-    protected WebDriver webDriver;
+    protected WebDriver driver;
     protected User user;
     protected UserGenerator userGenerator;
     protected RegisterPage registerPage;
@@ -26,13 +28,13 @@ public class BaseTest {
 
     @Before
     public void setUp() {
-        webDriver = WebDriverFactory.getWebDriver();
-        webDriver.get(BASE_URI);
-        registerPage = new RegisterPage(webDriver);
-        loginPage = new LoginPage(webDriver);
-        homePage = new HomePage(webDriver);
-        userPage = new UserPage(webDriver);
-        recoveryPasswordPage = new RecoveryPasswordPage(webDriver);
+        driver = WebDriverFactory.getWebDriver();
+        driver.get(BASE_URI);
+        registerPage = new RegisterPage(driver);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        userPage = new UserPage(driver);
+        recoveryPasswordPage = new RecoveryPasswordPage(driver);
         createUser();
     }
 
@@ -40,7 +42,7 @@ public class BaseTest {
     @DisplayName("Удаление пользователя и закрытие браузера")
     public void tearDown() {
         deleteUser();
-        webDriver.quit();
+        driver.quit();
     }
 
     private void createUser() {

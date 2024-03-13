@@ -10,7 +10,7 @@ import praktikum.model.User;
 import java.time.Duration;
 
 public class UserPage {
-    public final WebDriver webDriver;
+    public final WebDriver driver;
     private final By allUserFields = By.xpath(".//*[@class='text input__textfield text_type_main-default input__textfield-disabled']");
     private final By buttonProfile = By.xpath(".//*[text()='Профиль']");
     private final By buttonLogout = By.xpath(".//*[text()='Выход']");
@@ -19,36 +19,36 @@ public class UserPage {
 
 
     public UserPage(WebDriver driver) {
-        this.webDriver = driver;
+        this.driver = driver;
     }
 
     public void waitLoadingPage() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(3)).until(driver -> (driver.findElement(buttonProfile)).isEnabled());
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(driver -> (driver.findElement(buttonProfile)).isEnabled());
     }
 
     @Step("Получение поля с именем пользователя")
     public String getUserName() {
-        return webDriver.findElements(allUserFields).get(0).getAttribute("value");
+        return driver.findElements(allUserFields).get(0).getAttribute("value");
     }
 
     @Step("Получение поля с логином пользователя")
     public String getUserLogin() {
-        return webDriver.findElements(allUserFields).get(1).getAttribute("value");
+        return driver.findElements(allUserFields).get(1).getAttribute("value");
     }
 
     @Step("Клик по кнопке 'Конструктор'")
     public void clickButtonConstructor() {
-        webDriver.findElement(buttonConstructor).click();
+        driver.findElement(buttonConstructor).click();
     }
 
     @Step("Клик по логотопу")
     public void clickLogoStellarBurger() {
-        webDriver.findElement(logoStellarBurger).click();
+        driver.findElement(logoStellarBurger).click();
     }
 
     @Step("Клик по кнопке 'Выход'")
     public void clickButtonLogout() {
-        webDriver.findElement(buttonLogout).click();
+        driver.findElement(buttonLogout).click();
     }
 
     public void checkButton(NameButtonConstructor buttonName) {
