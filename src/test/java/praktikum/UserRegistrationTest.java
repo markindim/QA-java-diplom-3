@@ -17,14 +17,14 @@ public class UserRegistrationTest extends BaseTest {
     @Before
     @DisplayName("Создание драйвера, открытие браузера и подготовка тестовых данных для регистрации пользователя")
     public void setUp() {
-        webDriver = WebDriverFactory.getWebDriver();
-        webDriver.get("https://stellarburgers.nomoreparties.site/register");
-        homePage = new HomePage(webDriver);
-        loginPage = new LoginPage(webDriver);
-        registerPage = new RegisterPage(webDriver);
+        driver = WebDriverFactory.getWebDriver();
+        driver.get("https://stellarburgers.nomoreparties.site/register");
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        registerPage = new RegisterPage(driver);
         userGenerator = new UserGenerator();
         user = userGenerator.getRandomUser();
-        registerPage = new RegisterPage(webDriver);
+        registerPage = new RegisterPage(driver);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class UserRegistrationTest extends BaseTest {
         registerPage.clickButtonRegister();
         loginPage.waitLoadHeader();
 
-        assertEquals("https://stellarburgers.nomoreparties.site/login", webDriver.getCurrentUrl());
+        assertEquals("https://stellarburgers.nomoreparties.site/login", driver.getCurrentUrl());
     }
 
     @Test

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginPage {
-    private final WebDriver webDriver;
+    private final WebDriver driver;
 
     private final By logoHeader = By.xpath(".//h2[text() = 'Вход']");
     private final By buttonLogin = By.xpath(".//button[text() = 'Войти']");
@@ -18,35 +18,35 @@ public class LoginPage {
     private final By allFieldLogin = By.xpath(".//*[@class='text input__textfield text_type_main-default']");
 
     public LoginPage(WebDriver driver) {
-        this.webDriver = driver;
+        this.driver = driver;
     }
 
     public void waitLoadHeader() {
-        new WebDriverWait(webDriver, Duration.ofSeconds(3)).until(driver -> (driver.findElement(logoHeader)).getText() != null
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(driver -> (driver.findElement(logoHeader)).getText() != null
                 && !driver.findElement(logoHeader).getText().isEmpty());
     }
 
     @Step("Клик по кнопке 'Войти'")
     public void clickButtonLogin() {
-        webDriver.findElement(buttonLogin).click();
+        driver.findElement(buttonLogin).click();
     }
 
     @Step("Клик по кнопке 'Зарегистрироваться'")
     public void clickButtonRegister() {
-        webDriver.findElement(buttonRegister).click();
+        driver.findElement(buttonRegister).click();
     }
 
     @Step("Клик по кнопке 'Восстановить пароль'")
     public void clickButtonRecoveryPassword() {
-        webDriver.findElement(buttonRecoveryPassword).click();
+        driver.findElement(buttonRecoveryPassword).click();
     }
 
     public WebElement getEmailField() {
-        return webDriver.findElements(allFieldLogin).get(0);
+        return driver.findElements(allFieldLogin).get(0);
     }
 
     public WebElement getPasswordField() {
-        return webDriver.findElements(allFieldLogin).get(1);
+        return driver.findElements(allFieldLogin).get(1);
     }
 
     public void setEmailField(String email) {

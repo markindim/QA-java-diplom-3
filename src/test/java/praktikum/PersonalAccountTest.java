@@ -43,6 +43,6 @@ public class PersonalAccountTest extends BaseTest {
         userPage.clickButtonLogout();
         loginPage.waitLoadHeader();
 
-        assertEquals("https://stellarburgers.nomoreparties.site/login", webDriver.getCurrentUrl());
+        assertEquals("https://stellarburgers.nomoreparties.site/login", driver.getCurrentUrl());
     }
 }

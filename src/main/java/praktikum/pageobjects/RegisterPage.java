@@ -6,29 +6,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class RegisterPage {
-    private final WebDriver webDriver;
+    private final WebDriver driver;
     private final By allFieldRegister = By.xpath(".//*[@class='text input__textfield text_type_main-default']");
     private final By buttonRegister = By.className("button_button__33qZ0");
     private final By incorrectPassword = By.className("input__error");
     private final By buttonLogin = By.className("Auth_link__1fOlj");
 
     public RegisterPage(WebDriver driver) {
-        this.webDriver = driver;
+        this.driver = driver;
     }
 
     @Step("Получение поля для ввода имени")
     public WebElement getNameFieldRegister() {
-        return webDriver.findElements(allFieldRegister).get(0);
+        return driver.findElements(allFieldRegister).get(0);
     }
 
     @Step("Получение поля для ввода email")
     public WebElement getEmailFieldRegister() {
-        return webDriver.findElements(allFieldRegister).get(1);
+        return driver.findElements(allFieldRegister).get(1);
     }
 
     @Step("Получение поля для ввода password")
     public WebElement getPasswordFieldRegister() {
-        return webDriver.findElements(allFieldRegister).get(2);
+        return driver.findElements(allFieldRegister).get(2);
     }
 
     @Step("Ввод имени пользователя в поле")
@@ -48,16 +48,16 @@ public class RegisterPage {
 
     @Step("Клик по кнопке 'Зарегистрироваться'")
     public void clickButtonRegister() {
-        webDriver.findElement(buttonRegister).click();
+        driver.findElement(buttonRegister).click();
     }
 
     @Step("Клик по кнопке 'Войти'")
     public void clickButtonLogin() {
-        webDriver.findElement(buttonLogin).click();
+        driver.findElement(buttonLogin).click();
     }
 
     @Step("Считывание ошибки при вводе некорректного пароля")
     public String getIncorrectPassword() {
-        return webDriver.findElement(incorrectPassword).getText();
+        return driver.findElement(incorrectPassword).getText();
     }
 }

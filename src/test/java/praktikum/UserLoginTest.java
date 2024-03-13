@@ -36,8 +36,8 @@ public class UserLoginTest extends BaseTest {
         loginPage.setEmailField(user.getEmail());
         loginPage.setPasswordField(user.getPassword());
         loginPage.clickButtonLogin();
-        homePage.waitLoadingLogoPage();
-        String actual = webDriver.getCurrentUrl();
+        homePage.waitLoadLogoPage();
+        String actual = driver.getCurrentUrl();
         assertEquals("https://stellarburgers.nomoreparties.site/", actual);
     }
 }

@@ -32,6 +32,6 @@ public class PersonalConstructorTest extends BaseTest {
         userPage.waitLoadingPage();
         userPage.checkButton(buttonName);
 
-        assertEquals("https://stellarburgers.nomoreparties.site/", webDriver.getCurrentUrl());
+        assertEquals("https://stellarburgers.nomoreparties.site/", driver.getCurrentUrl());
     }
 }
